@@ -11,13 +11,16 @@ import FontIcon from 'material-ui/FontIcon';
 
 /* 返回按钮 */
 class ReturnButton extends Component {
-
+    handleGoBack = ()=> {
+        this.props.history.goBack();
+    }
 
     render() {
         return (
-            /*{<IconButton style={{padding:'0'}} onTouchTap={this.handleGoBack}>}*/
-            <IconButton style={{padding:'0'}} >
-                <FontIcon  />
+            <IconButton style={{padding:'0'}} onTouchTap={this.handleGoBack}>
+                <FontIcon
+                    className="iconfont icon-fanhui"
+                    color={this.props.color}/>
             </IconButton>
         );
     }

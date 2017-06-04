@@ -69,6 +69,8 @@
 }
 
 .liRight h3 {
+    /* TODO h3默认居坐 */
+    text-align:left;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color:var(--gray);
     font-weight: 400;
