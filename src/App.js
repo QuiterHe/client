@@ -12,8 +12,23 @@ import { Provider } from 'react-redux';
 import lightBaseTheme from "material-ui/styles/baseThemes/lightBaseTheme";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import './styles/loading.css';
+import store from './redux/store';
+import {receiveAutoComplete} from './redux/action';
+import Loading from './components/common/Loading';
+import { PropTypes } from 'prop-types';
+
+store.subscribe(()=>{
+    console.log(store.getState());
+});
+
+store.dispatch(receiveAutoComplete('he'));
 
 class App extends Component {
+
+    /*material-ui 需要配置主题才可以使用*/
+    getChildContext() {
+        return { muiTheme: getMuiTheme(lightBaseTheme) };
+    }
 
   render() {
     return (
@@ -34,13 +49,23 @@ class App extends Component {
     //     </IconButton>
     //
     // </MuiThemeProvider>
-        <div className="App">
-            <MuiThemeProvider>
+    //     <div className="App">
+    //         <MuiThemeProvider>
+    //             <Routes />
+    //         </MuiThemeProvider>
+    //     </div>
+        <Provider store={store}>
+            <div className="App">
+                <Loading />
                 <Routes />
-            </MuiThemeProvider>
-        </div>
+            </div>
+        </Provider>
     );
   }
 }
+
+App.childContextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+};
 
 export default App;
